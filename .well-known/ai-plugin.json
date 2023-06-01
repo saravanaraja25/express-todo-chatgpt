@@ -1,0 +1,18 @@
+{
+    "schema_version": "v1",
+    "name_for_human": "Presidio Todo List",
+    "name_for_model": "presidiotodolist",
+    "description_for_human": "Plugin for todo list",
+    "description_for_model": "Plugin for todo list",
+    "auth": {
+      "type": "none"
+    },
+    "api": {
+      "type": "openapi",
+      "url": "http://localhost:8000/openapi.yaml"
+    },
+    "logo_url": "https://www.presidio.com/icheestu/2021/02/Presidio-blue-logo.svg",
+    "contact_email": "saravanarajapp@presidio.com",
+    "legal_info_url": "https://presidio.com/"
+  }
+  
