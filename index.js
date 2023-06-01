@@ -62,7 +62,6 @@ app.put("/todos/:id", async (req, res) => {
 
 // bulk delete array of ids
 app.delete("/todos", async (req, res) => {
-    console.log(req.body);
   const { ids } = req.body;
   await prisma.todo.deleteMany({
     where: {
