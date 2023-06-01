@@ -22,12 +22,11 @@ app.get("/todos", (req, res) => {
 });
 
 app.post("/todos", async (req, res) => {
-  const { title } = req.body;
+  // bulk create
+  const { todos } = req.body;
   await prisma.todo
-    .create({
-      data: {
-        title,
-      },
+    .createMany({
+      data: todos,
     })
     .then((data) => {
       res.json(data).status(201);
@@ -36,12 +35,12 @@ app.post("/todos", async (req, res) => {
 
 app.get("/todos/:id", async (req, res) => {
   const { id } = req.params;
-   const todo = await prisma.todo.findUnique({
+  const todo = await prisma.todo.findUnique({
     where: {
       id: parseInt(id),
     },
   });
-    res.json(todo);
+  res.json(todo);
 });
 
 app.put("/todos/:id", async (req, res) => {
@@ -61,11 +60,15 @@ app.put("/todos/:id", async (req, res) => {
   });
 });
 
-app.delete("/todos/:id", async (req, res) => {
-  const { id } = req.params;
-  await prisma.todo.delete({
+// bulk delete array of ids
+app.delete("/todos", async (req, res) => {
+    console.log(req.body);
+  const { ids } = req.body;
+  await prisma.todo.deleteMany({
     where: {
-      id: parseInt(id),
+      id: {
+        in: ids,
+      },
     },
   });
   res.json({
@@ -100,5 +103,5 @@ app.get("/openapi.yaml", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}` );
+  console.log(`Server is running on port ${port}`);
 });
