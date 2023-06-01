@@ -9,7 +9,7 @@
     },
     "api": {
       "type": "openapi",
-      "url": "http://localhost:8000/openapi.yaml"
+      "url": "https://todo-api-1rid.onrender.com/openapi.yaml"
     },
     "logo_url": "https://www.presidio.com/icheestu/2021/02/Presidio-blue-logo.svg",
     "contact_email": "saravanarajapp@presidio.com",
