@@ -75,7 +75,7 @@ app.delete("/todos/:id", async (req, res) => {
 
 app.get("/.well-known/ai-plugin.json", (req, res) => {
   const host = req.headers["host"];
-  fs.readFile("./ai-plugin.json", "utf8", (err, data) => {
+  fs.readFile("./.well-known/ai-plugin.json", "utf8", (err, data) => {
     if (err) {
       console.error(err);
       res.status(500).send("Internal Server Error");
