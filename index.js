@@ -7,6 +7,8 @@ const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 
+const port = process.env.PORT || 8000;
+
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -97,6 +99,6 @@ app.get("/openapi.yaml", (req, res) => {
   });
 });
 
-app.listen(8000, () => {
-  console.log("Server is running on port 8000");
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}` );
 });
