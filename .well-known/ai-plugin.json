@@ -11,7 +11,7 @@
       "authorization_url": "https://skill-matrix-development.auth.us-east-1.amazoncognito.com/oauth2/token",
       "authorization_content_type": "application/x-www-form-urlencoded",
       "verification_tokens": {
-        "openai": "3bd5767aed2944e48f018386265fbf22"
+        "openai": "279508a50eeb4f1183f38619009252f4"
       }
     },
     "api": {
