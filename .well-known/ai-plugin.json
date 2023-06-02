@@ -1,7 +1,7 @@
 {
     "schema_version": "v1",
-    "name_for_human": "Presidio Todo List",
-    "name_for_model": "presidiotodolist",
+    "name_for_human": "Presidio Todo List No Auth",
+    "name_for_model": "presidiotodolistnoauth",
     "description_for_human": "Plugin for todo list",
     "description_for_model": "Plugin for todo list",
     "auth": {

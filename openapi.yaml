@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: Presidio Todos Test API
+  title: Presidio Todos Test API with No Auth
   version: 1.0.0
 servers:
   - url: https://todo-app-no-auth.onrender.com
