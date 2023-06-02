@@ -3,7 +3,7 @@ info:
   title: Presidio Todos Test API
   version: 1.0.0
 servers:
-  - url: https://todo-api-1rid.onrender.com
+  - url: https://todo-app-no-auth.onrender.com
     description: Development server
 paths:
   /todos:
