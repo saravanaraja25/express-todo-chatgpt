@@ -9,7 +9,7 @@
       "client_url": "https://skill-matrix-development.auth.us-east-1.amazoncognito.com/oauth2/authorize",
       "scope": "aws.cognito.signin.user.admin email openid",
       "authorization_url": "https://skill-matrix-development.auth.us-east-1.amazoncognito.com/oauth2/token",
-      "authorization_content_type": "applicaiton/json",
+      "authorization_content_type": "application/x-www-form-urlencoded",
       "verification_tokens": {
         "openai": "3bd5767aed2944e48f018386265fbf22"
       }
