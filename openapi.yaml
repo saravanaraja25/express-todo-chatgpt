@@ -69,10 +69,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/Todo"
     delete:
-      summary: Delete multiple todos by IDs
+      summary: Delete Todos with array of IDs
       operationId: deleteTodos
       requestBody:
-        description: IDs of todos to delete
         required: true
         content:
           application/json:
