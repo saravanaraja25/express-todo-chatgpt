@@ -135,9 +135,11 @@ app.delete("/todos", async (req, res) => {
   );
   const { id } = req.body;
   await prisma.todo
-    .delete({
+    .deleteMany({
       where: {
-        id: { id },
+        id: {
+          in: id,
+        },
       },
     })
     .then((data) => {
