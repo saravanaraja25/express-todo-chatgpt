@@ -78,7 +78,7 @@ paths:
             schema:
               type: object
               properties:
-                ids:
+                id:
                   type: array
                   items:
                     type: integer
