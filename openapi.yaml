@@ -43,23 +43,15 @@ paths:
                 items:
                   $ref: "#/components/schemas/Todo"
     delete:
-      summary: Delete Todos with array of IDs
+      summary: Delete Todos accepts an ID to delete
       operationId: deleteTodos
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              type: object
-              required:
-                - id
-              properties:
-                id:
-                  type: array
-                  items:
-                    type: integer
-                    format: int64
-                    description: index of the todo to delete, index can be obtained by getTodos function
+              $ref: "#/components/schemas/deleteTodoRequest"
+              
       responses:
         "200":
           description: Successful response
@@ -109,3 +101,14 @@ components:
           format: int64
         title:
           type: string
+
+    deleteTodoRequest:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: index of the todo to delete, index can be obtained by getTodos function
+            
