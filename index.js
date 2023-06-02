@@ -17,9 +17,15 @@ app.get("/", (req, res) => {
 
 app.get("/todos", (req, res) => {
   console.log(req);
-  prisma.todo.findMany().then((data) => {
-    res.json(data);
-  });
+  prisma.todo
+    .findMany()
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 app.post("/todos", async (req, res) => {
@@ -38,46 +44,64 @@ app.post("/todos", async (req, res) => {
 app.get("/todos/:id", async (req, res) => {
   const { id } = req.params;
   console.log(req);
-  const todo = await prisma.todo.findUnique({
-    where: {
-      id: parseInt(id),
-    },
-  });
-  res.json(todo);
+  try {
+    const todo = await prisma.todo.findUnique({
+      where: {
+        id: parseInt(id),
+      },
+    });
+    res.json(todo);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
 
 app.put("/todos/:id", async (req, res) => {
   console.log(req);
   const { id } = req.params;
   const { title } = req.body;
-  await prisma.todo.update({
-    where: {
-      id: parseInt(id),
-    },
-    data: {
-      title,
-    },
-  });
-
-  res.json({
-    message: "Updated",
-  });
+  await prisma.todo
+    .update({
+      where: {
+        id: parseInt(id),
+      },
+      data: {
+        title,
+      },
+    })
+    .then((data) => {
+      res.json({
+        message: "Updated",
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 // bulk delete array of ids
 app.delete("/todos", async (req, res) => {
   console.log(req);
   const { ids } = req.body;
-  await prisma.todo.deleteMany({
-    where: {
-      id: {
-        in: ids,
+  await prisma.todo
+    .deleteMany({
+      where: {
+        id: {
+          in: ids,
+        },
       },
-    },
-  });
-  res.json({
-    message: "Deleted",
-  });
+    })
+    .then((data) => {
+      res.json({
+        message: "Deleted",
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 app.get("/.well-known/ai-plugin.json", (req, res) => {
