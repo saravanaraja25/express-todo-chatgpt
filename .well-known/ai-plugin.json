@@ -5,7 +5,14 @@
     "description_for_human": "Plugin for todo list",
     "description_for_model": "Plugin for todo list",
     "auth": {
-      "type": "none"
+      "type": "oauth",
+      "client_url": "https://skill-matrix-development.auth.us-east-1.amazoncognito.com/oauth2/authorize",
+      "scope": "aws.cognito.signin.user.admin email openid",
+      "authorization_url": "https://skill-matrix-development.auth.us-east-1.amazoncognito.com/oauth2/token",
+      "authorization_content_type": "applicaiton/json",
+      "verification_tokens": {
+        "openai": "xxxxxxxxxx"
+      }
     },
     "api": {
       "type": "openapi",
