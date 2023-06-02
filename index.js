@@ -16,10 +16,19 @@ app.get("/", (req, res) => {
 });
 
 app.get("/todos", (req, res) => {
+  console.log(
+    "###################################################Entering Todos GET API #####################################################"
+  );
   console.log(req);
+  console.log(
+    "###################################################Exiting Todos GET API ####################################"
+  );
   prisma.todo
     .findMany()
     .then((data) => {
+      console.log(
+        "#########################################################Response from GET API#########################################################"
+      );
       res.json(data);
     })
     .catch((err) => {
@@ -30,26 +39,50 @@ app.get("/todos", (req, res) => {
 
 app.post("/todos", async (req, res) => {
   // bulk create
-  console.log(req);
+  console.log(
+    "###################################################Entering Todos POST API #####################################################"
+  );
+  console.log(req.body);
+  console.log(
+    "###################################################Exiting Todos POST API ####################################"
+  );
   const { todos } = req.body;
   await prisma.todo
     .createMany({
       data: todos,
     })
     .then((data) => {
+      console.log(
+        "#########################################################Response from POST API#########################################################"
+      );
+      console.log(data);
       res.json(data).status(201);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
     });
 });
 
 app.get("/todos/:id", async (req, res) => {
   const { id } = req.params;
-  console.log(req);
+  console.log(
+    "###################################################Entering Todos GET API #####################################################"
+  );
+  console.log(req.params, req.body);
+  console.log(
+    "###################################################Exiting Todos GET API ####################################"
+  );
   try {
     const todo = await prisma.todo.findUnique({
       where: {
         id: parseInt(id),
       },
     });
+    console.log(
+      "#########################################################Response from GET API#########################################################"
+    );
+    console.log(todo);
     res.json(todo);
   } catch (err) {
     console.log(err);
@@ -58,7 +91,13 @@ app.get("/todos/:id", async (req, res) => {
 });
 
 app.put("/todos/:id", async (req, res) => {
-  console.log(req);
+  console.log(
+    "###################################################Entering Todos PUT API #####################################################"
+  );
+  console.log(req.params, req.body);
+  console.log(
+    "###################################################Exiting Todos PUT API ####################################"
+  );
   const { id } = req.params;
   const { title } = req.body;
   await prisma.todo
@@ -71,6 +110,10 @@ app.put("/todos/:id", async (req, res) => {
       },
     })
     .then((data) => {
+      console.log(
+        "#########################################################Response from PUT API#########################################################"
+      );
+      console.log(data);
       res.json({
         message: "Updated",
       });
@@ -83,7 +126,13 @@ app.put("/todos/:id", async (req, res) => {
 
 // bulk delete array of ids
 app.delete("/todos", async (req, res) => {
-  console.log(req);
+  console.log(
+    "###################################################Entering Todos DELETE API #####################################################"
+  );
+  console.log(req.body);
+  console.log(
+    "###################################################Exiting Todos DELETE API ####################################"
+  );
   const { ids } = req.body;
   await prisma.todo
     .deleteMany({
@@ -94,6 +143,10 @@ app.delete("/todos", async (req, res) => {
       },
     })
     .then((data) => {
+      console.log(
+        "#########################################################Response from DELETE API#########################################################"
+      );
+      console.log(data);
       res.json({
         message: "Deleted",
       });
