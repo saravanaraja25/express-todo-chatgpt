@@ -16,6 +16,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/todos", (req, res) => {
+  console.log(req);
   prisma.todo.findMany().then((data) => {
     res.json(data);
   });
@@ -23,6 +24,7 @@ app.get("/todos", (req, res) => {
 
 app.post("/todos", async (req, res) => {
   // bulk create
+  console.log(req);
   const { todos } = req.body;
   await prisma.todo
     .createMany({
@@ -35,6 +37,7 @@ app.post("/todos", async (req, res) => {
 
 app.get("/todos/:id", async (req, res) => {
   const { id } = req.params;
+  console.log(req);
   const todo = await prisma.todo.findUnique({
     where: {
       id: parseInt(id),
@@ -44,6 +47,7 @@ app.get("/todos/:id", async (req, res) => {
 });
 
 app.put("/todos/:id", async (req, res) => {
+  console.log(req);
   const { id } = req.params;
   const { title } = req.body;
   await prisma.todo.update({
@@ -62,6 +66,7 @@ app.put("/todos/:id", async (req, res) => {
 
 // bulk delete array of ids
 app.delete("/todos", async (req, res) => {
+  console.log(req);
   const { ids } = req.body;
   await prisma.todo.deleteMany({
     where: {
