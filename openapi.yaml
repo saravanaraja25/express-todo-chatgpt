@@ -51,11 +51,15 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - id
               properties:
                 id:
                   type: array
                   items:
                     type: integer
+                    format: int64
+                    description: index of the todo to delete, index can be obtained by getTodos function
       responses:
         "200":
           description: Successful response
